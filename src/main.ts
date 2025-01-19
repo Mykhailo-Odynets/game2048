@@ -33,9 +33,14 @@ type TouchPoint = {
     x: number;
     y: number;
 }
+type Scores = {
+    current: number;
+    best: number;
+}
 
 
 const touchStart: TouchPoint = {x: 0, y: 0};
+const scores: Scores = {current: 0, best: 0}
 let zeros: Array<Zeros> = []
 const dData: Display = [[0, 0, 0, 0],
                         [0, 0, 0, 0],
@@ -43,10 +48,41 @@ const dData: Display = [[0, 0, 0, 0],
                         [0, 0, 0, 0],]
 let isTouched: boolean = false
 
+const field = document.querySelector<HTMLDivElement>('#app')!
+const currentScore = document.querySelector<HTMLSpanElement>('#score')!
+const bestScore = document.querySelector<HTMLSpanElement>('#score--best')!
+
+
+const moveLeft = () => {
+    sumUp()
+}
+const moveUp = () => {
+    rotate()
+    sumUp()
+    rotate()
+    rotate()
+    rotate()
+}
+const moveRight = () => {
+    rotate()
+    rotate()
+    sumUp()
+    rotate()
+    rotate()
+}
+const moveDown = () => {
+    rotate()
+    rotate()
+    rotate()
+    sumUp()
+    rotate()
+}
+
 
 const updateDisplay = () => {
-    const field = document.querySelector<HTMLDivElement>('#app')!
     field.innerHTML = ''
+    currentScore.innerHTML = `${scores.current}`
+    bestScore.innerHTML = `${scores.best}`
     addRandomNumber()
     for (let row of dData) {
         for (let num of row) {
@@ -88,6 +124,10 @@ const sumUp = () => {
             if (currentPosition > 0 && dData[row][currentPosition - 1] === dData[row][currentPosition]) {
                 dData[row][currentPosition - 1] *= 2
                 dData[row][currentPosition] = 0
+                scores.current += dData[row][currentPosition - 1]
+                if (scores.current > scores.best) {
+                    scores.best = scores.current
+                }
             }
         }
     }
@@ -109,37 +149,24 @@ const rotate = () => {
 
 
 updateDisplay()
-// console.log(dData)
+
 
 document.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowLeft') {
-        sumUp()
+        moveLeft()
     } else if (e.key === 'ArrowUp') {
-        rotate()
-        sumUp()
-        rotate()
-        rotate()
-        rotate()
+        moveUp()
     }
     else if (e.key === 'ArrowRight') {
-        rotate()
-        rotate()
-        sumUp()
-        rotate()
-        rotate()
+        moveRight()
     }
     else if (e.key === 'ArrowDown') {
-        rotate()
-        rotate()
-        rotate()
-        sumUp()
-        rotate()
+        moveDown()
     } else {
         return
     }
 
     updateDisplay()
-    // console.log(dData)
 })
 
 document.addEventListener('touchstart', (e) => {
@@ -155,31 +182,18 @@ document.addEventListener('touchmove', (e) => {
     if ((Math.abs(dx) > 50 || Math.abs(dy) > 50) && isTouched) {
         if (Math.abs(dx) > Math.abs(dy)) {
             if (dx > 0) {
-                rotate()
-                rotate()
-                sumUp()
-                rotate()
-                rotate()
+                moveRight()
             } else {
-                sumUp()
+                moveLeft()
             }
         } else {
             if (dy > 0) {
-                rotate()
-                rotate()
-                rotate()
-                sumUp()
-                rotate()
+                moveUp()
             } else {
-                rotate()
-                sumUp()
-                rotate()
-                rotate()
-                rotate()
+                moveDown()
             }
         }
         isTouched = false
         updateDisplay()
     }
 });
-// document.addEventListener('touchend', (e) => {console.log(e.touches)}, false);
