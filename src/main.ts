@@ -133,3 +133,7 @@ document.addEventListener('keydown', (e) => {
     updateDisplay()
     // console.log(dData)
 })
+
+// document.addEventListener('touchstart', (e) => {console.log(e.touches)}, false);
+// document.addEventListener('touchmove', (e) => {console.log(e.touches)}, false);
+// document.addEventListener('touchend', (e) => {console.log(e.touches)}, false);

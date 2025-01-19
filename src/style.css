@@ -3,6 +3,8 @@
   line-height: 1.5;
   font-weight: 400;
 
+  --gap: 1em;
+
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
@@ -15,19 +17,20 @@
 
 body {
   margin: 0;
+  padding: var(--gap);
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100vw;
-  height: 100vh;
+  width: calc(100% - 2 * var(--gap));
+  height: calc(100vh - 2 * var(--gap));
 }
 
 
 #app {
   display: grid;
-  grid-template-columns: repeat(4, minmax(calc((100% - 3 * 1em) / 4), 100px));
+  grid-template-columns: repeat(4, minmax(calc((100% - 3 * var(--gap)) / 4), 100px));
   grid-template-rows: repeat(4, 1fr);
-  gap: 1em;
+  gap: var(--gap);
 }
 
 .block {
@@ -37,8 +40,8 @@ body {
   aspect-ratio: 1 / 1;
   background-color: #9f9f9f;
   font-size: 2em;
-  border-radius: 3px;
-  transition: 0.4s;
+  border-radius: 5px;
+  /* transition: 0.4s; */
 }
 
 .block-0 {font-size: 0em;}
