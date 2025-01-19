@@ -103,7 +103,7 @@ const rotate = () => {
 
 
 updateDisplay()
-console.log(dData)
+// console.log(dData)
 
 document.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowLeft') {
@@ -131,5 +131,5 @@ document.addEventListener('keydown', (e) => {
     }
 
     updateDisplay()
-    console.log(dData)
+    // console.log(dData)
 })

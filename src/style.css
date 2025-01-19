@@ -24,9 +24,8 @@ body {
 
 
 #app {
-  /* text-align: center; */
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(calc((100% - 3 * 1em) / 4), 100px));
   grid-template-rows: repeat(4, 1fr);
   gap: 1em;
 }
@@ -35,8 +34,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100px;
-  height: 100px;
+  aspect-ratio: 1 / 1;
   background-color: #9f9f9f;
   font-size: 2em;
   border-radius: 3px;
