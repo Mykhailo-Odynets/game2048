@@ -47,6 +47,7 @@ const dData: Display = [[0, 0, 0, 0],
                         [0, 0, 0, 0],
                         [0, 0, 0, 0],]
 let isTouched: boolean = false
+let isWin: boolean = false
 
 const field = document.querySelector<HTMLDivElement>('#app')!
 const currentScore = document.querySelector<HTMLSpanElement>('#score')!
@@ -87,11 +88,24 @@ const updateDisplay = () => {
     for (let row of dData) {
         for (let num of row) {
             const block = document.createElement('div');
+
             block.classList.add('block', `block-${num}`)
             block.innerHTML = `${num}`
             field.appendChild(block)
+
+            if (num === 2048) {
+                isWin = true
+            }
         }
     }
+    if (isWin) {
+        showWinningMessage()
+    }
+}
+
+const showWinningMessage = () => {
+    const winMessage = document.getElementsByClassName('win-message')
+    winMessage[0].classList.remove('hidden')
 }
 
 const findZeros = () => {
@@ -150,8 +164,20 @@ const rotate = () => {
 
 updateDisplay()
 
+document.querySelector<HTMLButtonElement>('#play-again')!.addEventListener('click', () => {
+    dData.length = 0
+    dData.push([0, 0, 0, 0],
+                [0, 0, 0, 0],
+                [0, 0, 0, 0],
+                [0, 0, 0, 0],)
+    scores.current = 0
+    isWin = false
+    updateDisplay()
+    document.getElementsByClassName('win-message')[0].classList.add('hidden')
+})
 
 document.addEventListener('keydown', (e) => {
+    if (isWin) return
     if (e.key === 'ArrowLeft') {
         moveLeft()
     } else if (e.key === 'ArrowUp') {
@@ -170,6 +196,7 @@ document.addEventListener('keydown', (e) => {
 })
 
 document.addEventListener('touchstart', (e) => {
+    if (isWin) return
     touchStart.x = e.touches[0].clientX
     touchStart.y = e.touches[0].clientY
     isTouched = true
