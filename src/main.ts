@@ -29,13 +29,19 @@ type Display = Array<Row>
 type Zeros = {
     [key: number]: number;
 }
+type TouchPoint = {
+    x: number;
+    y: number;
+}
 
 
+const touchStart: TouchPoint = {x: 0, y: 0};
 let zeros: Array<Zeros> = []
 const dData: Display = [[0, 0, 0, 0],
                         [0, 0, 0, 0],
                         [0, 0, 0, 0],
                         [0, 0, 0, 0],]
+let isTouched: boolean = false
 
 
 const updateDisplay = () => {
@@ -134,6 +140,44 @@ document.addEventListener('keydown', (e) => {
     // console.log(dData)
 })
 
-// document.addEventListener('touchstart', (e) => {console.log(e.touches)}, false);
-// document.addEventListener('touchmove', (e) => {console.log(e.touches)}, false);
+document.addEventListener('touchstart', (e) => {
+    touchStart.x = e.touches[0].clientX
+    touchStart.y = e.touches[0].clientY
+    isTouched = true
+});
+document.addEventListener('touchmove', (e) => {
+    const touchEnd: TouchPoint = {x: e.touches[0].clientX, y: e.touches[0].clientY}
+    const dx: number = touchEnd.x - touchStart.x
+    const dy: number = touchEnd.y - touchStart.y
+    
+    if ((Math.abs(dx) > 50 || Math.abs(dy) > 50) && isTouched) {
+        if (Math.abs(dx) > Math.abs(dy)) {
+            if (dx > 0) {
+                rotate()
+                rotate()
+                sumUp()
+                rotate()
+                rotate()
+            } else {
+                sumUp()
+            }
+        } else {
+            if (dy > 0) {
+                rotate()
+                rotate()
+                rotate()
+                sumUp()
+                rotate()
+            } else {
+                rotate()
+                sumUp()
+                rotate()
+                rotate()
+                rotate()
+            }
+        }
+        isTouched = false
+        updateDisplay()
+    }
+});
 // document.addEventListener('touchend', (e) => {console.log(e.touches)}, false);
