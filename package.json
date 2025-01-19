@@ -1,15 +1,21 @@
 {
   "name": "game2048",
+  "homepage": "https://mykhailo-odynets.github.io/game2048/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "devDependencies": {
     "typescript": "^5.5.3",
     "vite": "^5.4.1"
+  },
+  "dependencies": {
+    "gh-pages": "^6.3.0"
   }
 }
