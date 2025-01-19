@@ -55,6 +55,19 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
+}
+#play-again {
+  padding: 0.5em 1em;
+  font-size: large;
+  background-color: #ff0000;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+#play-again:hover {
+  background-color: #d10000;
 }
 .hidden {
   display: none;
