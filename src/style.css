@@ -15,6 +15,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+html, body {
+  overscroll-behavior: none;
+}
+
 body {
   margin: 0;
   padding: var(--gap);
@@ -22,7 +26,7 @@ body {
   align-items: center;
   justify-content: center;
   width: calc(100% - 2 * var(--gap));
-  height: calc(100vh - 2 * var(--gap));
+  height: calc(100dvh - 2 * var(--gap));
 }
 
 

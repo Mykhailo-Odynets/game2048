@@ -134,6 +134,8 @@ document.addEventListener('keydown', (e) => {
         rotate()
         sumUp()
         rotate()
+    } else {
+        return
     }
 
     updateDisplay()
