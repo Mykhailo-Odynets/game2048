@@ -10,15 +10,15 @@
     <main id="game">
       <div id="scores">
         <div>Score: <span id="score">0</span></div>
-        <div>Best: <span id="score--best">0</span></div>
+        <div>Best: <span id="score__best">0</span></div>
       </div>
       <div id="app"></div>
     </main>
-    <div class="win-message hidden">
+    <div class="message hidden">
       <div>
-        <h1>You win!</h1>
-        <p>Your score: <span>-1</span></p>
-        <button id="play-again">Play again</button>
+        <h1 id="message__text"></h1>
+        <p>Your score: <span id="message__score"></span></p>
+        <button id="message__play-again">Play again</button>
       </div>
     </div>
     <script type="module" src="/src/main.ts"></script>

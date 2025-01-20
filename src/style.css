@@ -43,7 +43,7 @@ body {
   gap: var(--gap);
 }
 
-.win-message {
+.message {
   position: fixed;
   top: 0;
   left: 0;
@@ -57,7 +57,7 @@ body {
   justify-content: center;
   text-align: center;
 }
-#play-again {
+#message__play-again {
   padding: 0.5em 1em;
   font-size: large;
   background-color: #ff0000;
@@ -66,7 +66,7 @@ body {
   cursor: pointer;
   transition: 0.2s;
 }
-#play-again:hover {
+#message__play-again:hover {
   background-color: #d10000;
 }
 .hidden {
