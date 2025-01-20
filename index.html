@@ -5,22 +5,22 @@
     <link rel="icon" type="image/svg+xml" href="/game2048/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>2048 game</title>
-    <script type="module" crossorigin src="/game2048/assets/index-CZwxk4IF.js"></script>
-    <link rel="stylesheet" crossorigin href="/game2048/assets/index-DtiZjSS5.css">
+    <script type="module" crossorigin src="/game2048/assets/index-BVUVXGPi.js"></script>
+    <link rel="stylesheet" crossorigin href="/game2048/assets/index-CaBAf9Tf.css">
   </head>
   <body>
     <main id="game">
       <div id="scores">
         <div>Score: <span id="score">0</span></div>
-        <div>Best: <span id="score--best">0</span></div>
+        <div>Best: <span id="score__best">0</span></div>
       </div>
       <div id="app"></div>
     </main>
-    <div class="win-message hidden">
+    <div class="message hidden">
       <div>
-        <h1>You win!</h1>
-        <p>Your score: <span>-1</span></p>
-        <button id="play-again">Play again</button>
+        <h1 id="message__text"></h1>
+        <p>Your score: <span id="message__score"></span></p>
+        <button id="message__play-again">Play again</button>
       </div>
     </div>
   </body>
